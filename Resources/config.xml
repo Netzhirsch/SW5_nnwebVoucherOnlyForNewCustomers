@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
+	<elements>
+		<element type="boolean">
+			<name>nnwebVoucherOnlyForNewCustomers_allowForGuestAccounts</name>
+			<label lang="de">Gutscheine bei Gast-Bestellungen erlauben:</label>
+			<label lang="en">Allow vouchers for guest orders:</label>
+			<value>true</value>
+		</element>
+		
+		<element type="boolean">
+			<name>nnwebVoucherOnlyForNewCustomers_checkMailForGuestAccounts</name>
+			<label lang="de">E-Mail-Adresse bei Gast-Bestellungen prüfen:</label>
+			<label lang="en">Check e-mail address for guest orders:</label>
+			<value>true</value>
+			<description lang="de">Bei Gast-Bestellungen kann geprüft werden, ob über die genutzte E-Mail-Adresse bereits in der Vergangenheit eine Bestellung getätigt wurde.</description>
+			<description lang="en">In the case of guest orders, it can be checked whether an order has already been made via the used e-mail address in the past.</description>
+		</element>
+	</elements>
+</config>
