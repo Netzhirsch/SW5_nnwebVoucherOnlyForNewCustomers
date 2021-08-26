@@ -60,7 +60,7 @@ class nnwebVoucherOnlyForNewCustomers extends \Shopware\Components\Plugin {
 		if (!empty($voucherDetails["nnwebonlynewcustomers"])) {
 			
 			$config = $this->container->get('shopware.plugin.cached_config_reader')->getByPluginName($this->getName());
-            $shopwareVersion = '5.4.0';
+            $shopwareVersion = Shopware()->Config()->get('version');
             if ($shopwareVersion <= '5.4.0')
                 $snippetsManager = Shopware()->Application()->Snippets();
             else
