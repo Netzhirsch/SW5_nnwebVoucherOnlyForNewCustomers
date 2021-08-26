@@ -60,6 +60,11 @@ class nnwebVoucherOnlyForNewCustomers extends \Shopware\Components\Plugin {
 		if (!empty($voucherDetails["nnwebonlynewcustomers"])) {
 			
 			$config = $this->container->get('shopware.plugin.cached_config_reader')->getByPluginName($this->getName());
+            $shopwareVersion = '5.4.0';
+            if ($shopwareVersion <= '5.4.0')
+                $snippetsManager = Shopware()->Application()->Snippets();
+            else
+                $snippetsManager = Shopware()->Snippets();
 			$session = Shopware()->Session();
 			$userId = $session->get('sUserId');
 			$sErrorMessages = array();
@@ -78,7 +83,7 @@ class nnwebVoucherOnlyForNewCustomers extends \Shopware\Components\Plugin {
 			
 			if (!$config["nnwebVoucherOnlyForNewCustomers_allowForGuestAccounts"] && (empty($userId) || $accountmode == 1)) {
 				
-				$sErrorMessages[] = Shopware()->Application()->Snippets()->getNamespace('frontend/basket/internalMessages')->get('VoucherFailureNewCustomerGuestOrder', 'Dieser Gutschein kann nur mit einem Kundenkonto eingelöst werden. Bitte loggen Sie sich vorher ein.');
+				$sErrorMessages[] = $snippetsManager->getNamespace('frontend/basket/internalMessages')->get('VoucherFailureNewCustomerGuestOrder', 'Dieser Gutschein kann nur mit einem Kundenkonto eingelöst werden. Bitte loggen Sie sich vorher ein.');
 				$args->setReturn(array(
 					"sErrorFlag" => true, 
 					"sErrorMessages" => $sErrorMessages 
@@ -105,7 +110,7 @@ class nnwebVoucherOnlyForNewCustomers extends \Shopware\Components\Plugin {
 				}
 				
 				if ($count > 0) {
-					$sErrorMessages[] = Shopware()->Application()->Snippets()->getNamespace('frontend/basket/internalMessages')->get('VoucherFailureNewCustomer', 'Dieser Gutschein ist nur für Neukunden gültig.');
+					$sErrorMessages[] = $snippetsManager->getNamespace('frontend/basket/internalMessages')->get('VoucherFailureNewCustomer', 'Dieser Gutschein ist nur für Neukunden gültig.');
 					$args->setReturn(array(
 						"sErrorFlag" => true, 
 						"sErrorMessages" => $sErrorMessages 

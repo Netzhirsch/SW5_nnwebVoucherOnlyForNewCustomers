@@ -3,7 +3,7 @@
     <label lang="de">Gutscheine nur für Neukunden</label>
     <label lang="en">Vouchers only for new customers</label>
 
-    <version>1.1.3</version>
+    <version>1.1.4</version>
     <copyright>Copyright (c) 2021, Netzhirsch GbR</copyright>
     <license>proprietary</license>
     <link>https://www.netzhirsch.de</link>
@@ -47,4 +47,10 @@
         <changes lang="de">Es werden nun nicht nur allgemeine sondern auch individuelle Gutschein-Codes berücksichtigt.</changes>
         <changes lang="en">Not only general but also individual voucher codes are now taken into account.</changes>
     </changelog>
+
+    <changelog version="1.1.4">
+        <changes lang="de">Verbessert Kompatibilität mit Shopware Versionen größer als 5.4.</changes>
+        <changes lang="en">Improved compatibility with Shopware versions greater than 5.4.</changes>
+    </changelog>
+
 </plugin>
