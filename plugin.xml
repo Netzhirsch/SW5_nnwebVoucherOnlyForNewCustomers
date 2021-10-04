@@ -3,7 +3,7 @@
     <label lang="de">Gutscheine nur für Neukunden</label>
     <label lang="en">Vouchers only for new customers</label>
 
-    <version>1.1.4</version>
+    <version>1.1.5</version>
     <copyright>Copyright (c) 2021, Netzhirsch GbR</copyright>
     <license>proprietary</license>
     <link>https://www.netzhirsch.de</link>
@@ -51,6 +51,11 @@
     <changelog version="1.1.4">
         <changes lang="de">Verbessert Kompatibilität mit Shopware Versionen größer als 5.4.</changes>
         <changes lang="en">Improved compatibility with Shopware versions greater than 5.4.</changes>
+    </changelog>
+
+    <changelog version="1.1.5">
+        <changes lang="de">Textbausteine wurden nicht gespeichert.</changes>
+        <changes lang="en">Text modules were not saved.</changes>
     </changelog>
 
 </plugin>
