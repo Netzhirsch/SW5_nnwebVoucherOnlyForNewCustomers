@@ -44,7 +44,6 @@ class nnwebVoucherOnlyForNewCustomers extends \Shopware\Components\Plugin {
 
 	public function replaceAddVoucher(\Enlight_Hook_HookArgs $args) {
 		$voucherCode = $args->get('voucherCode');
-		
 		$db = Shopware()->Db();
 
 		$voucherDetails = $db->fetchRow('
@@ -56,9 +55,9 @@ class nnwebVoucherOnlyForNewCustomers extends \Shopware\Components\Plugin {
 				', [
 			$voucherCode, $voucherCode
 		]) ?: [];
-		
+
 		if (!empty($voucherDetails["nnwebonlynewcustomers"])) {
-			
+
 			$config = $this->container->get('shopware.plugin.cached_config_reader')->getByPluginName($this->getName());
             $shopwareVersion = Shopware()->Config()->get('version');
             if ($shopwareVersion <= '5.4.0')
@@ -68,26 +67,26 @@ class nnwebVoucherOnlyForNewCustomers extends \Shopware\Components\Plugin {
 			$session = Shopware()->Session();
 			$userId = $session->get('sUserId');
 			$sErrorMessages = array();
-			
-			$user = null;
+
 			if (!empty($userId)) {
 				$user = $db->fetchRow('
 	                SELECT accountmode, email FROM s_user
 	                WHERE id = ?
 	            ', [
-					$userId 
+					$userId
 				]);
 				$accountmode = $user["accountmode"];
 				$email = $user["email"];
 			}
-			
+
 			if (!$config["nnwebVoucherOnlyForNewCustomers_allowForGuestAccounts"] && (empty($userId) || $accountmode == 1)) {
-				
-				$sErrorMessages[] = $snippetsManager->getNamespace('frontend/basket/internalMessages')->get('VoucherFailureNewCustomerGuestOrder', 'Dieser Gutschein kann nur mit einem Kundenkonto eingelöst werden. Bitte loggen Sie sich vorher ein.');
+
+				$sErrorMessages[] = $snippetsManager->getNamespace('frontend/basket/internalMessages')->get('VoucherFailureNewCustomerGuestOrder', 'Dieser Gutschein kann nur mit einem Kundenkonto eingelöst werden. Bitte loggen Sie sich vorher ein.',true);
 				$args->setReturn(array(
-					"sErrorFlag" => true, 
-					"sErrorMessages" => $sErrorMessages 
+					"sErrorFlag" => true,
+					"sErrorMessages" => $sErrorMessages
 				));
+		        die('test');
 			} elseif (!empty($userId)) {
 				$count = 0;
 				if ($accountmode == 0) {
@@ -110,7 +109,7 @@ class nnwebVoucherOnlyForNewCustomers extends \Shopware\Components\Plugin {
 				}
 				
 				if ($count > 0) {
-					$sErrorMessages[] = $snippetsManager->getNamespace('frontend/basket/internalMessages')->get('VoucherFailureNewCustomer', 'Dieser Gutschein ist nur für Neukunden gültig.');
+					$sErrorMessages[] = $snippetsManager->getNamespace('frontend/basket/internalMessages')->get('VoucherFailureNewCustomer', 'Dieser Gutschein ist nur für Neukunden gültig.',true);
 					$args->setReturn(array(
 						"sErrorFlag" => true, 
 						"sErrorMessages" => $sErrorMessages 
