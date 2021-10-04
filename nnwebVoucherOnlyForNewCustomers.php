@@ -86,7 +86,6 @@ class nnwebVoucherOnlyForNewCustomers extends \Shopware\Components\Plugin {
 					"sErrorFlag" => true,
 					"sErrorMessages" => $sErrorMessages
 				));
-		        die('test');
 			} elseif (!empty($userId)) {
 				$count = 0;
 				if ($accountmode == 0) {
